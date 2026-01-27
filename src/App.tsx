@@ -40,9 +40,6 @@ controls.addEventListener('change', () => {
 // controls.movementSpeed = 8;
 // controls.lookSpeed = 0.08;
 
-// camera.position.set(100,20,-5);
-// camera.lookAt(-10, -10, 0);
-
 const loadingManager = new THREE.LoadingManager();
 
 const progressBar = document.getElementById('progress-bar');
@@ -53,13 +50,13 @@ loadingManager.onProgress = function(_url, loaded, total) {
     }
 }
 
-const progressBarContainer = document.querySelector('.progress-bar-container');
+// const progressBarContainer = document.querySelector('.progress-bar-container');
 
-loadingManager.onLoad = function() {
-    if (progressBarContainer) {
-        (progressBarContainer as HTMLElement).style.display = 'none';
-    }
-}
+// loadingManager.onLoad = function() {
+//     if (progressBarContainer) {
+//         (progressBarContainer as HTMLElement).style.display = 'none';
+//     }
+// }
 
 const gltfLoader = new GLTFLoader(loadingManager);
 
@@ -116,7 +113,7 @@ camera.lookAt(0, 2, -1);
             case 4:
                 moveCamera(2.1056845058152844, -0.24999848688585216, -6.5889928658253725);
                 rotateCamera(-Math.PI / 2, 0, 0);
-                position = 5;
+                position = 0;
                 break;
         }
         
