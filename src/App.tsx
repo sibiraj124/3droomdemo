@@ -67,7 +67,23 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
 let position = 0;
 
-gltfLoader.load('./modern_apartment_interior/scene.gltf', function(gltf) {
+const positionDescriptions: { [key: number]: string } = {
+    0: "Living Room - Main View: Experience the spacious living area with modern furniture and ambient lighting.",
+    1: "TV Area: Focus on the entertainment section featuring a sleek TV setup and cozy seating.",
+    2: "Dining Space: Explore the elegant dining area perfect for family gatherings.",
+    3: "Kitchen Area: View the contemporary kitchen space with sleek countertops and modern appliances.",
+    4: "sofa Corner: Relax in the comfortable sofa corner, ideal for unwinding after a long day.",
+    5: "Aerial View: Get a bird's eye perspective of the entire apartment layout."
+};
+
+function updatePositionCard(pos: number) {
+    const card = document.getElementById('position-card');
+    if (card) {
+        card.textContent = positionDescriptions[pos];
+    }
+}
+
+gltfLoader.load('/modern_apartment_interior/scene.gltf', function(gltf) {
 const model = gltf.scene;
     // after loading model
 model.scale.set(0.01, 0.01, 0.01);
@@ -88,32 +104,39 @@ camera.position.set(
 
 camera.lookAt(0, 2, -1);
 
+updatePositionCard(position);
+
     window.addEventListener('mouseup', function() {
         switch(position) {
             case 0:
                 moveCamera(0.147, 0.021, -0.0233);
                 rotateCamera(0, 0.5, 0);
                 position = 1;
+                updatePositionCard(position);
                 break;
             case 1:
                 moveCamera( -0.14414,0.024279,-0.097777);
                 rotateCamera(0, 0.5, 0);
                 position = 2;
+                updatePositionCard(position);
                 break;
             case 2:
                 moveCamera(-0.16033,0.0069,0.07192);
                 rotateCamera(0, 0.5, 0);
                 position = 3;
+                updatePositionCard(position);
                 break;
             case 3:
                 moveCamera(3.34947,4.62918,8.34758);
                 rotateCamera(0, 0, 0);
                 position = 4;
+                updatePositionCard(position);
                 break;
             case 4:
                 moveCamera(2.1056845058152844, -0.24999848688585216, -6.5889928658253725);
                 rotateCamera(-Math.PI / 2, 0, 0);
                 position = 0;
+                updatePositionCard(position);
                 break;
         }
         
