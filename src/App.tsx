@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
-import {MeshoptDecoder} from 'three/examples/jsm/libs/meshopt_decoder.module.js';
+// import {MeshoptDecoder} from 'three/examples/jsm/libs/meshopt_decoder.module.js';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import gsap from 'gsap';
 import './App.css';
@@ -40,15 +40,15 @@ controls.addEventListener('change', () => {
 // controls.movementSpeed = 8;
 // controls.lookSpeed = 0.08;
 
-const loadingManager = new THREE.LoadingManager();
+// const loadingManager = new THREE.LoadingManager();
 
-const progressBar = document.getElementById('progress-bar');
+// const progressBar = document.getElementById('progress-bar');
 
-loadingManager.onProgress = function(_url, loaded, total) {
-    if (progressBar) {
-        (progressBar as HTMLProgressElement).value = (loaded / total) * 100;
-    }
-}
+// loadingManager.onProgress = function(_url, loaded, total) {
+//     if (progressBar) {
+//         (progressBar as HTMLProgressElement).value = (loaded / total) * 100;
+//     }
+// }
 
 // const progressBarContainer = document.querySelector('.progress-bar-container');
 
@@ -58,12 +58,12 @@ loadingManager.onProgress = function(_url, loaded, total) {
 //     }
 // }
 
-const gltfLoader = new GLTFLoader(loadingManager);
+const gltfLoader = new GLTFLoader();
 
-gltfLoader.setMeshoptDecoder(MeshoptDecoder);
+// gltfLoader.setMeshoptDecoder(MeshoptDecoder);
 
-renderer.outputColorSpace = THREE.SRGBColorSpace;
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
+// renderer.outputColorSpace = THREE.SRGBColorSpace;
+// renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
 let position = 0;
 
@@ -72,8 +72,8 @@ const positionDescriptions: { [key: number]: string } = {
     1: "TV Area: Focus on the entertainment section featuring a sleek TV setup and cozy seating.",
     2: "Dining Space: Explore the elegant dining area perfect for family gatherings.",
     3: "Kitchen Area: View the contemporary kitchen space with sleek countertops and modern appliances.",
-    4: "sofa Corner: Relax in the comfortable sofa corner, ideal for unwinding after a long day.",
-    5: "Aerial View: Get a bird's eye perspective of the entire apartment layout."
+    4: "Sofa Corner: Relax in the comfortable sofa corner, ideal for unwinding after a long day.",
+    5: "Balcony View: Step out to the balcony and enjoy the outdoor ambiance with a scenic view."
 };
 
 function updatePositionCard(pos: number) {
@@ -135,6 +135,12 @@ updatePositionCard(position);
             case 4:
                 moveCamera(2.1056845058152844, -0.24999848688585216, -6.5889928658253725);
                 rotateCamera(-Math.PI / 2, 0, 0);
+                position = 5;
+                updatePositionCard(position);
+                break;
+            case 5:
+                moveCamera(26.45, 3.9, 11.5);
+                rotateCamera(0, 0, 0);
                 position = 0;
                 updatePositionCard(position);
                 break;
